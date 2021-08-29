@@ -1,0 +1,45 @@
+syntax = "proto3";
+
+package calculator;
+
+service CalculatorService {
+    // unary API
+     rpc Sum (SumRequest) returns (SumResponse) {};
+
+    // server streaming api
+
+    rpc primeNumberDecomposition (primeNumberDecompositionRequest) returns (stream primeNumberDecompositionResponse){};
+
+   // client streaming api
+
+    rpc ComputeAverage (stream ComputeAverageRequest) returns ( ComputeAverageResponse){};
+
+}
+
+message ComputeAverageRequest {
+    int32 number = 1;
+}
+
+message ComputeAverageResponse {
+    double average = 1;
+}
+
+
+
+message primeNumberDecompositionRequest {
+    int32 number = 1;
+
+}
+
+message primeNumberDecompositionResponse {
+    int32 prime_factor = 1;
+}
+
+message SumRequest {
+    int32 first_number = 1;
+    int32 second_number = 2;
+}
+
+message SumResponse {
+    int32 sum_result = 1;
+}
